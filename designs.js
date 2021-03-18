@@ -3,11 +3,11 @@
 function selectSizeInput(){
   // fetch inputHeight from DOM
   let height = parseInt(document.getElementById("inputHeight").value);
-  console.log("Required height is " + height);
+  //console.log("Required height is " + height);
 
   // fetch inputWidth from DOM
   let width = parseInt(document.getElementById("inputWidth").value);
-  console.log("Required width is " + width);
+  //console.log("Required width is " + width);
 
   return [height, width];
 
@@ -16,35 +16,40 @@ function selectSizeInput(){
 
 function makeGrid() {
 
+  // call selectSizeInput function to fetch Height
+  // and Width measurements from input dialogs
   let size = selectSizeInput();
+
+  //extract height and width measurements
   let height = size[0];
   let width = size[1];
 
   //Capture pixelCanvas from DOM
   let table = document.getElementById("pixelCanvas");
 
-  //Create tableBody element
-  let tableBody = document.createElement("tableBody");
-
   // outer for loop to create rows
   for (let i = 0; i < height; i++){
+
+    // checking rows are being created correctly
+    //console.log("Creating row " + i);
 
     //create table row object
     let row = document.createElement("tr");
 
-    //create data object cells (<td>) and append to end
-    //of table row
     for (let j = 0; j < width; j++){
+
+      //checking columns are being created correctly
+      //console.log("Creating column " + j)
+
+      //create data object cells (columns of <td>)
+      //and append to end of table row
       let cell = document.createElement("td");
-      let cellText = document.createTextNode("cell in row " + i + ", column "+ j);
-      cell.appendChild(cellText);
+      //let cellText = document.createTextNode("cell in row " + i + ", column "+ j);
+      //cell.appendChild(cellText);
       row.appendChild(cell);
     }
     //add the row to the end of the table
-    tableBody.appendChild(row);
+    table.appendChild(row);
   }
-
-  //link the tableBody to pixelCanvas
-  table.appendChild(tableBody);
 
 }
