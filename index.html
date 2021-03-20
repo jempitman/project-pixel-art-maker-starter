@@ -14,11 +14,13 @@
           <input type="number" id="inputHeight" name="height" min="1" value="1">
           Grid Width:
           <input type="number" id="inputWidth" name="width" min="1" value="1">
-          <input type="button" id="GenTabl" value="Generate table" onclick="selectSizeInput()">
+          <input type="button" value="Generate table" onclick="selectSizeInput()">
       </form>
 
       <h2>Pick A Color</h2>
-      <input type="color" id="colorPicker">
+      <input type="color" value = "#000000" id="colorPicker" >
+
+      <p id="test">The selected color</p>
 
       <h2>Design Canvas</h2>
       <table id="pixelCanvas"></table>

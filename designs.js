@@ -1,6 +1,18 @@
 // Select color input
+/*
+function selectColor() {
+  document.getElementById("colorPicker").addEventListener("change", onChangeColor);
 
+}
+//capture value
+//var color = document.getElementById("colorPicker").value;
+//document.getElementById("colorPicker").addEventListener("change", onChangeColor);
 
+function onChangeColor(){
+  console.log(document.getElementById("colorPicker").value);
+}
+
+*/
 // Select size input
 function selectSizeInput(){
 
@@ -35,12 +47,18 @@ function makeGrid(height, width) {
       //create data object cells (columns of <td>)
       //and append to end of table row
       let cell = document.createElement("td");
+      let cellListener = cell.addEventListener('click', clickHandler);
       //let cellText = document.createTextNode("cell in row " + i + ", column "+ j);
-      //cell.appendChild(cellText);
+    //  cell.appendChild(cellText);
       row.appendChild(cell);
     }
     //add the row to the end of the table
     table.appendChild(row);
   }
+
+}
+
+function clickHandler(){
+  console.log("clicked");
 
 }
