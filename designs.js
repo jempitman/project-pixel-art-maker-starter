@@ -1,6 +1,7 @@
 // Setting default color
 var color = "#000000";
 
+
 window.addEventListener("load", selectColor, false);
 
 
@@ -24,8 +25,11 @@ function selectSizeInput(){
   let width = parseInt(document.getElementById("inputWidth").value);
   //console.log("Required width is " + width);
 
-  makeGrid(height, width);
-
+  if ((height > 100) || (width > 100) ){
+    alert("Grid size too large, height and width must be <100");
+  } else{
+    makeGrid(height, width);
+  }
 }
 
 // When size is submitted by the user, call makeGrid()
