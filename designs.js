@@ -47,7 +47,11 @@ function makeGrid(height, width) {
       //create data object cells (columns of <td>)
       //and append to end of table row
       let cell = document.createElement("td");
-      let cellListener = cell.addEventListener('click', clickHandler);
+      //let cellListener = cell.addEventListener('click', clickHandler);
+      let cellListener = cell.addEventListener('click', function (e){
+        var td = e.target;
+        td.style.backgroundColor = 'red';
+      });
       //let cellText = document.createTextNode("cell in row " + i + ", column "+ j);
     //  cell.appendChild(cellText);
       row.appendChild(cell);
@@ -58,7 +62,8 @@ function makeGrid(height, width) {
 
 }
 
-function clickHandler(){
-  console.log("clicked");
+//function clickHandler(){
+  //console.log("clicked");
+  //var el =
 
-}
+//}
