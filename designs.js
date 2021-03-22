@@ -1,18 +1,18 @@
+// Setting default color
+var color = "#000000";
+
+window.addEventListener("load", selectColor, false);
+
+
 // Select color input
-/*
-function selectColor() {
-  document.getElementById("colorPicker").addEventListener("change", onChangeColor);
+function selectColor(){
+  var colorPick = document.getElementById("colorPicker");
 
-}
-//capture value
-//var color = document.getElementById("colorPicker").value;
-//document.getElementById("colorPicker").addEventListener("change", onChangeColor);
-
-function onChangeColor(){
-  console.log(document.getElementById("colorPicker").value);
+  colorPick.addEventListener("change", function() {
+    color = event.target.value;
+  }, false);
 }
 
-*/
 // Select size input
 function selectSizeInput(){
 
@@ -50,7 +50,7 @@ function makeGrid(height, width) {
       //let cellListener = cell.addEventListener('click', clickHandler);
       let cellListener = cell.addEventListener('click', function (e){
         var td = e.target;
-        td.style.backgroundColor = 'red';
+        td.style.backgroundColor = color;
       });
       //let cellText = document.createTextNode("cell in row " + i + ", column "+ j);
     //  cell.appendChild(cellText);
