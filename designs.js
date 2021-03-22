@@ -1,41 +1,41 @@
 // Setting default color
-var color = "#000000";
+const defaultColor = "#000000";
 
+//
+window.addEventListener("load", startup, false);
 
-window.addEventListener("load", selectColor, false);
+function startup(){
+  let colorPick = document.getElementById("colorPicker");
+  colorPick.value = defaultColor;
+  colorPick.addEventListener("change", setColor, false);
+}
 
-
-// Select color input
-function selectColor(){
-  var colorPick = document.getElementById("colorPicker");
-
-  colorPick.addEventListener("change", function(e) {
-    color = e.target.value;
-  }, false);
+//Setting new pixel color based on change event in colorPicker
+function setColor(event){
+  //fetch color value of colorPicker
+  let cellColor = document.getElementById("colorPicker").value;
+  //setting cellColor value based on user selection in colorPicker
+  event.target.value = cellColor;
 }
 
 // Select size input
 function selectSizeInput(){
-
   // fetch inputHeight from DOM
   let height = parseInt(document.getElementById("inputHeight").value);
-  //console.log("Required height is " + height);
-
   // fetch inputWidth from DOM
   let width = parseInt(document.getElementById("inputWidth").value);
-  //console.log("Required width is " + width);
 
-  // grid size check
-  if ((height < 1) || (height > 100)){
+  // grid size check to heights/widths are >0 and <100 to prevent crashing
+  if ((height < 0) || (height > 100)){
     alert("Invalid input, height must be between 1 and 100");
-  } else if ((width < 1) || (width > 100)) {
+  } else if ((width < 0) || (width > 100)) {
     alert("Invalid input, width must be between 1 and 100");
   } else{
     makeGrid(height, width);
   }
 }
 
-// When size is submitted by the user, call makeGrid()
+// Build grid based on height and width inputs
 function makeGrid(height, width) {
 
   //Capture pixelCanvas from DOM
@@ -54,7 +54,7 @@ function makeGrid(height, width) {
       //create data object cells (columns of <td>)
       //and append to end of table row
       let cell = document.createElement("td");
-      //let cellListener = cell.addEventListener('click', clickHandler);
+      //create listeners for each td element
       let cellListener = cell.addEventListener('click', colorCell, false);
       row.appendChild(cell);
     }
@@ -64,9 +64,14 @@ function makeGrid(height, width) {
 
 }
 
+//function to color cells, based on click event listener
 function colorCell(event){
-  //console.log("clicked");
-  var coloredCell = event.target;
-  coloredCell.style.backgroundColor = color;
+  // store selected cell as coloredCell variable
+  let coloredCell = event.target;
+  // fetch current color value of colorPicker and store
+  //as cellColor variable
+  let cellColor = document.getElementById("colorPicker").value;
+  //color cell with cellColor variable
+  coloredCell.style.backgroundColor = cellColor;
 
 }
