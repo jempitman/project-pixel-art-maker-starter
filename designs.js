@@ -9,8 +9,8 @@ window.addEventListener("load", selectColor, false);
 function selectColor(){
   var colorPick = document.getElementById("colorPicker");
 
-  colorPick.addEventListener("change", function() {
-    color = event.target.value;
+  colorPick.addEventListener("change", function(e) {
+    color = e.target.value;
   }, false);
 }
 
@@ -25,8 +25,11 @@ function selectSizeInput(){
   let width = parseInt(document.getElementById("inputWidth").value);
   //console.log("Required width is " + width);
 
-  if ((height > 100) || (width > 100) ){
-    alert("Grid size too large, height and width must be <100");
+  // grid size check
+  if ((height < 1) || (height > 100)){
+    alert("Invalid input, height must be between 1 and 100");
+  } else if ((width < 1) || (width > 100)) {
+    alert("Invalid input, width must be between 1 and 100");
   } else{
     makeGrid(height, width);
   }
@@ -39,7 +42,7 @@ function makeGrid(height, width) {
   let table = document.getElementById("pixelCanvas");
 
   //Initializing table for dynamic build
-  table.innerHTML = "";
+  table.innerHTML = '';
 
   // outer for loop to create rows
   for (let i = 0; i < height; i++){
@@ -52,12 +55,7 @@ function makeGrid(height, width) {
       //and append to end of table row
       let cell = document.createElement("td");
       //let cellListener = cell.addEventListener('click', clickHandler);
-      let cellListener = cell.addEventListener('click', function (e){
-        var td = e.target;
-        td.style.backgroundColor = color;
-      });
-      //let cellText = document.createTextNode("cell in row " + i + ", column "+ j);
-    //  cell.appendChild(cellText);
+      let cellListener = cell.addEventListener('click', colorCell, false);
       row.appendChild(cell);
     }
     //add the row to the end of the table
@@ -66,8 +64,9 @@ function makeGrid(height, width) {
 
 }
 
-//function clickHandler(){
+function colorCell(event){
   //console.log("clicked");
-  //var el =
+  var coloredCell = event.target;
+  coloredCell.style.backgroundColor = color;
 
-//}
+}
